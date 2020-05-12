@@ -9,9 +9,18 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
-        node-version: '12'  
+        node-version: '12'
+
     - name: Install CLI
       run: npm install -g @rocket.chat/apps-cli
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Install Test Dependencies
+      working-directory: ./test/app
+      run: npm install
+      
     - name: Test
       working-directory: ./test
       run: ./run.sh
