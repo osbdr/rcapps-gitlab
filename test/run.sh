@@ -1,5 +1,6 @@
 #!/bin/bash
 
+docker-compose down
 docker-compose up -d
 
 while ! curl http://localhost:3000
@@ -11,3 +12,7 @@ echo "$(date) - connected successfully"
 
 cd ..
 rc-apps deploy --url=http://localhost:3000 -u=admin -p=supersecret
+cd test
+cd app
+npm test
+

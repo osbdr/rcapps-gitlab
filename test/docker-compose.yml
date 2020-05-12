@@ -22,6 +22,7 @@ services:
       - ADMIN_EMAIL=admin@example.com
       - OVERWRITE_SETTING_Apps_Framework_enabled=true
       - OVERWRITE_SETTING_Apps_Framework_Development_Mode=true
+      - OVERWRITE_SETTING_Show_Setup_Wizard=completed
 #      - MAIL_URL=smtp://smtp.email
 #       - HTTP_PROXY=http://proxy.domain.com
 #       - HTTPS_PROXY=http://proxy.domain.com
