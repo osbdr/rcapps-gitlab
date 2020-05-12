@@ -3,7 +3,7 @@
 docker-compose down
 docker-compose up -d
 
-while ! curl -q http://localhost:3000
+while ! curl -s http://localhost:3000
 do
   echo "$(date) - still trying"
   sleep 10
