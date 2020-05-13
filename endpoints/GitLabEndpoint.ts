@@ -53,11 +53,11 @@ export class GitLabEndpoint extends ApiEndpoint {
     public async push(request: IApiRequest, read: IRead, modify: IModify) {
         const room = await getRoomFromRequest(request, read);
         const sender = await getUserFromRequest(request, read);
-        const gitlabUrl = (await read.getEnvironmentReader().getSettings().getById('url')).value.replace(/\/?$/, '/');
+
         if (room && await canSenderAccessRoom(sender, room, read)) {
-            const projectUrl = gitlabUrl + request.content.project.path_with_namespace;
+            const projectUrl = request.content.project.web_url;
             const commits = request.content.commits.map((commit) => {
-                return `• [${commit.message}](${projectUrl}/commit/${commit.id}) (${commit.author.name})`;
+                return `• [${commit.message}](${commit.url}) (${commit.author.name})`;
             }).join('\n');
 
             const repoName = request.content.project.name;
