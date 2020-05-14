@@ -30,13 +30,13 @@
         "closed_at": null,
         "confidential": false,
         "created_at": "2020-05-12 06:38:33 UTC",
-        "description": "",
+        "description": "change",
         "discussion_locked": null,
         "due_date": null,
         "id": 34429657,
         "iid": 1,
-        "last_edited_at": null,
-        "last_edited_by_id": null,
+        "last_edited_at": "2020-05-13 08:06:50 UTC",
+        "last_edited_by_id": 2449793,
         "milestone_id": null,
         "moved_to_id": null,
         "duplicated_to_id": null,
@@ -45,8 +45,8 @@
         "state_id": 1,
         "time_estimate": 0,
         "title": "Test Issue",
-        "updated_at": "2020-05-12 06:38:33 UTC",
-        "updated_by_id": null,
+        "updated_at": "2020-05-13 08:06:50 UTC",
+        "updated_by_id": 2449793,
         "weight": null,
         "url": "https://gitlab.com/jonmi/webhooks-test/-/issues/1",
         "total_time_spent": 0,
@@ -56,49 +56,29 @@
         "assignee_id": null,
         "labels": [],
         "state": "opened",
-        "action": "open"
+        "action": "update"
     },
     "labels": [],
     "changes": {
-        "author_id": {
+        "description": {
+            "previous": "",
+            "current": "change"
+        },
+        "last_edited_at": {
+            "previous": null,
+            "current": "2020-05-13 08:06:50 UTC"
+        },
+        "last_edited_by_id": {
             "previous": null,
             "current": 2449793
         },
-        "created_at": {
-            "previous": null,
-            "current": "2020-05-12 06:38:33 UTC"
-        },
-        "description": {
-            "previous": null,
-            "current": ""
-        },
-        "id": {
-            "previous": null,
-            "current": 34429657
-        },
-        "iid": {
-            "previous": null,
-            "current": 1
-        },
-        "project_id": {
-            "previous": null,
-            "current": 18709877
-        },
-        "relative_position": {
-            "previous": null,
-            "current": 1073742323
-        },
-        "title": {
-            "previous": null,
-            "current": "Test Issue"
-        },
         "updated_at": {
-            "previous": null,
-            "current": "2020-05-12 06:38:33 UTC"
+            "previous": "2020-05-12 06:38:33 UTC",
+            "current": "2020-05-13 08:06:50 UTC"
         },
-        "total_time_spent": {
+        "updated_by_id": {
             "previous": null,
-            "current": 0
+            "current": 2449793
         }
     },
     "repository": {
