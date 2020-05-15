@@ -7,6 +7,7 @@ import { sendMessage } from '../lib/send';
 import { createIssueMessage } from '../lib/webhooks/IssueWebhook';
 import { createPipelineMessage } from '../lib/webhooks/PipelineWebhook';
 import { createPushMessage } from '../lib/webhooks/PushWebhook';
+import { createCommentMessage } from '../lib/webhooks/CommentWebhook';
 
 async function getRoomFromRequest(request: IApiRequest, read: IRead) {
     const roomName = request.content.project.path_with_namespace.replace(/\//g, '-').toLowerCase();
@@ -100,6 +101,9 @@ export class GitLabEndpoint extends ApiEndpoint {
         switch (eventType) {
             case 'issue':
                 text = createIssueMessage(request);
+                break;
+            case 'note':
+                text = createCommentMessage(request);
                 break;
             case 'push':
                 text = createPushMessage(request);
