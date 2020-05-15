@@ -5,23 +5,40 @@ on:
   pull_request:
 
 jobs:
+  outdated:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.16.3
+
+    - name: Install CLI
+      run: npm install -g @rocket.chat/apps-cli
+
+    - name: Install Dependencies
+      run: npm ci
+
+    - name: outdated
+      run: npm outdated
+      
   test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
-        node-version: '12'
+        node-version: 12.16.3
 
     - name: Install CLI
       run: npm install -g @rocket.chat/apps-cli
 
     - name: Install Dependencies
-      run: npm install
+      run: npm ci
 
     - name: Install Test Dependencies
       working-directory: ./test/app
-      run: npm install
+      run: npm ci
       
     - name: Test
       working-directory: ./test
