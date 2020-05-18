@@ -8,9 +8,10 @@ export function createPipelineMessage(request: IApiRequest): string {
     const commitUrl = request.content.commit.url;
     const commitTitle = request.content.commit.title;
 
+    const status = request.content.object_attributes.status;
     let response = `${request.content.user.name} started a pipeline for repository [${repoName}](${projectUrl})\n`
         + `Branch: ${branch}\n`
-        + `Status: ${JSON.stringify(request.content.object_attributes.status)}\n`
+        + `${computeStatusIcon(status)} Status: ${JSON.stringify(status)}\n`
         + `Commit: [${commitTitle}](${commitUrl})\n`
         + `Pipeline:\n`
         ;
@@ -18,7 +19,8 @@ export function createPipelineMessage(request: IApiRequest): string {
     const stages = request.content.builds.reverse();
 
     for (const stage of stages) {
-        response += computeStatusIcon(stage.status) + ' \tStage: ' + stage.name + ' Status: ' + stage.status + '\n';
+
+        response += `${computeStatusIcon(stage.status)} \tStage: ${stage.name} Status: ${stage.status} [Details](${computeJobUrl(projectUrl, stage.id)})\n`;
     }
 
     response += `\n[Details](${computePipelineUrl(request)})\n`;
@@ -32,11 +34,19 @@ function computeStatusIcon(status: string): string {
         case 'created':
             return ':white_large_square:';
         case 'pending':
-            return ':arrows_clockwise:';
+            return ':pause_button:';
+        case 'running':
+            return ':arrows_counterclockwise:';
         case 'success':
             return ':white_check_mark:';
         case 'failed':
             return ':x:';
+        case 'canceled':
+            return ':heavy_minus_sign:';
+        case 'manual':
+            return ':gear:';
+        case 'skipped':
+            return ':fast_forward:';
         default:
             return '';
     }
@@ -47,4 +57,9 @@ function computePipelineUrl(request: IApiRequest): string {
     const pipelineId = request.content.object_attributes.id;
 
     return `${webUrl}/pipelines/${pipelineId}`;
+}
+
+
+function computeJobUrl(webUrl: string, jobId: string): string {
+    return `${webUrl}/-/jobs/${jobId}`;
 }

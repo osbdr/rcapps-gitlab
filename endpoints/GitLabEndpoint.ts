@@ -8,6 +8,7 @@ import { createIssueMessage } from '../lib/webhooks/IssueWebhook';
 import { createPipelineMessage } from '../lib/webhooks/PipelineWebhook';
 import { createPushMessage } from '../lib/webhooks/PushWebhook';
 import { createCommentMessage } from '../lib/webhooks/CommentWebhook';
+import { createMergeRequestMessage } from '../lib/webhooks/MergeRequestWebhook';
 
 async function getRoomFromRequest(request: IApiRequest, read: IRead) {
     const roomName = request.content.project.path_with_namespace.replace(/\//g, '-').toLowerCase();
@@ -110,6 +111,9 @@ export class GitLabEndpoint extends ApiEndpoint {
                 break;
             case 'pipeline':
                 text = createPipelineMessage(request);
+                break;
+            case 'merge_request':
+                text = createMergeRequestMessage(request);
                 break;
             default:
                 throw Error(`Unknown GitLab event '${eventType}'`);
