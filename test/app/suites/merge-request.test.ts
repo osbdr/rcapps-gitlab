@@ -11,7 +11,6 @@ describe('Test Merge Request', () => {
             url: 'http://localhost:3000/api/apps/public/684202ed-1461-4983-9ea7-fde74b15026c/webhook',
             body: fs.readFileSync('./json/merge-requests/merge-open.json')
         }, async (error, response, body) => {
-            console.log(response)
             console.log(body)
             const msg = await messages.getLastMessage();
             console.log(msg);
@@ -21,14 +20,13 @@ describe('Test Merge Request', () => {
     })
 })
 
-describe('Test Merge Request', () => {
+describe('Test Merge Request 2', () => {
     it('send mr hook', async done => {
         request.post({
             headers: { 'Content-Type': 'application/json', 'X-Gitlab-Event': 'Merge Request Hook' },
             url: 'http://localhost:3000/api/apps/public/684202ed-1461-4983-9ea7-fde74b15026c/webhook',
             body: fs.readFileSync('./json/merge-requests/merge-close.json')
         }, async (error, response, body) => {
-            console.log(response)
             console.log(body)
             const msg = await messages.getLastMessage();
             console.log(msg);
