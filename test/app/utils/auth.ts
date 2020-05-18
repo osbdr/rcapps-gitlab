@@ -1,6 +1,6 @@
 const request = require('request');
 
-export function login(): Promise<any> {
+export async function login(): Promise<any> {
     const body = { username: 'admin', password: 'supersecret' };
 
     return new Promise(function (resolve, reject) {
