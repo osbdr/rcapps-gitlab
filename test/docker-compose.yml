@@ -23,6 +23,7 @@ services:
       - OVERWRITE_SETTING_Apps_Framework_enabled=true
       - OVERWRITE_SETTING_Apps_Framework_Development_Mode=true
       - OVERWRITE_SETTING_Show_Setup_Wizard=completed
+      - OVERWRITE_SETTING_API_Enable_Rate_Limiter=false
     depends_on:
       - mongo
     ports:
