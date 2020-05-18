@@ -1,7 +1,7 @@
 const request = require('request');
 import * as auth from "./utils/auth";
 
-export default async function () {
+export default function () {
     auth.login().then((res) => {
         res = JSON.parse(res);
         createChannel(res.data.authToken, res.data.userId)
