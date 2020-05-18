@@ -1,16 +1,16 @@
-const request = require('request');
+import request = require('request');
 
 export async function login(): Promise<any> {
-    const body = { username: 'admin', password: 'supersecret' };
+    const requestBody = { username: 'admin', password: 'supersecret' };
 
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
         request.post(
             {
                 headers: { 'Content-Type': 'application/json' },
                 url: 'http://localhost:3000/api/v1/login',
-                body: JSON.stringify(body),
+                body: JSON.stringify(requestBody),
             },
-            function (error, res, body) {
+            (error, res, body) => {
                 if (!error && res.statusCode === 200) {
                     resolve(body);
                 } else {

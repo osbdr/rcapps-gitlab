@@ -1,5 +1,5 @@
-const request = require('request');
-import * as auth from "./utils/auth";
+import request = require('request');
+import * as auth from './utils/auth';
 
 export default async function () {
     let res  = await auth.login();
@@ -12,7 +12,7 @@ export default async function () {
 async function createChannel(authToken, userId) {
     const channelBody = { name: 'jonmi-webhooks-test' };
 
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
         request.post(
             {
                 headers: {
@@ -23,8 +23,8 @@ async function createChannel(authToken, userId) {
                 url: 'http://localhost:3000/api/v1/channels.create',
                 body: JSON.stringify(channelBody),
             },
-            function (error, res, body) {
-                if (!error && res.statusCode == 200) {
+            (error, res, body) => {
+                if (!error && res.statusCode === 200) {
                     resolve(body);
                 } else {
                     reject(error);
@@ -37,7 +37,7 @@ async function createChannel(authToken, userId) {
 async function deleteChannel(authToken, userId) {
     const channelBody = { roomName: 'jonmi-webhooks-test' };
 
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
         request.post(
             {
                 headers: {
@@ -48,7 +48,7 @@ async function deleteChannel(authToken, userId) {
                 url: 'http://localhost:3000/api/v1/channels.delete',
                 body: JSON.stringify(channelBody),
             },
-            function (error, res, body) {
+            (error, res, body) => {
                     resolve(body);
             }
         );
