@@ -9,21 +9,20 @@ export function createPipelineMessage(request: IApiRequest): string {
     const commitTitle = request.content.commit.title;
 
     const status = request.content.object_attributes.status;
-    let response = `${request.content.user.name} started a pipeline for repository [${repoName}](${projectUrl})\n`
+    const pipelineId = request.content.object_attributes.id;
+
+    let response = `Status of pipeline [#${pipelineId}](${computePipelineUrl(request)}) for repository [${repoName}](${projectUrl}) changed:\n`
         + `Branch: ${branch}\n`
         + `${computeStatusIcon(status)} Status: ${JSON.stringify(status)}\n`
         + `Commit: [${commitTitle}](${commitUrl})\n`
-        + `Pipeline:\n`
+        + `Steps:\n`
         ;
 
     const stages = request.content.builds.reverse();
 
     for (const stage of stages) {
-
         response += `${computeStatusIcon(stage.status)} \tStage: ${stage.name} Status: ${stage.status} [Details](${computeJobUrl(projectUrl, stage.id)})\n`;
     }
-
-    response += `\n[Details](${computePipelineUrl(request)})\n`;
 
     return response;
 }

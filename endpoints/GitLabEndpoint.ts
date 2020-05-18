@@ -4,11 +4,11 @@ import { IMessage } from '@rocket.chat/apps-engine/definition/messages';
 import { IRoom } from '@rocket.chat/apps-engine/definition/rooms';
 import { IUser } from '@rocket.chat/apps-engine/definition/users';
 import { sendMessage } from '../lib/send';
-import { createIssueMessage } from '../lib/webhooks/IssueWebhook';
-import { createPipelineMessage } from '../lib/webhooks/PipelineWebhook';
-import { createPushMessage } from '../lib/webhooks/PushWebhook';
-import { createCommentMessage } from '../lib/webhooks/CommentWebhook';
-import { createMergeRequestMessage } from '../lib/webhooks/MergeRequestWebhook';
+import { createIssueMessage } from '../lib/webhooks/issue-webhook';
+import { createPipelineMessage } from '../lib/webhooks/pipeline-webhook';
+import { createPushMessage } from '../lib/webhooks/push-webhook';
+import { createCommentMessage } from '../lib/webhooks/comment-webhook';
+import { createMergeRequestMessage } from '../lib/webhooks/merge-request-webhook';
 
 async function getRoomFromRequest(request: IApiRequest, read: IRead) {
     const roomName = request.content.project.path_with_namespace.replace(/\//g, '-').toLowerCase();
