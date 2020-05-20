@@ -9,8 +9,6 @@ This directory contains a set of automated tests for the app and is used by the 
 - deploy the app to the instance (rc-apps)
 - run the `jest` test suite with `npm test`
 
->Warning: This test suite is far from ideal. Currently it only validates that there is a `200: OK` response but does not verify the generated message within the channel.
-
 ## How to use
 
 When you want to use the automated scripts (`run.bat` or `run.sh`) you need to have Docker and docker-compose installed.
@@ -37,3 +35,11 @@ $ (cd .. && npm install)
 $ (cd app && npm install)
 $ (cd app && npm test)
 ```
+
+## Future Improvements
+
+Currently the tests only validate that there is a `200: OK` response but does not verify the generated message within the channel.
+
+Idea for Improvement:
+
+- use the Rocket.Chat API to get the messages sent and validate the actual content as well
