@@ -22,7 +22,7 @@ function getDescription(request: IApiRequest): string {
 }
 
 function getAction(request: IApiRequest): string {
-    const action = enforce(request.content.object_attributes.action)
+    const action = enforce(request.content.object_attributes.action);
     switch (action) {
         case 'open':
             return 'opened';
