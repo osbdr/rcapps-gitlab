@@ -31,7 +31,7 @@ $ ./run.sh
 
 ```
 $ (cd .. && npm install)
-$ (cd app && npm test)
+$ (npm test)
 ```
 
 ## Future Improvements
