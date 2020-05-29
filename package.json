@@ -2,7 +2,7 @@
     "scripts": {
         "test": "jest",
         "test-win": "cd test && run.bat",
-        "test-linux": "cd test && ./run.bat"
+        "test-linux": "cd test && ./run.sh"
     },
     "dependencies": {
         "@rocket.chat/apps-engine": "^1.14.0",
