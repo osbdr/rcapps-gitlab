@@ -1,104 +1,54 @@
-import fs = require('fs');
-import request = require('request');
-import * as messages from '../utils/messages';
+import { MergeRequestBuilder } from '../builder/merge-request.builder';
+import { sendWebhook } from '../utils/send';
+import { Api } from '../utils/api';
 
-export { };
 
-describe('Merge Request 1 - open', () => {
-    it('send mr hook', async done => {
-        request.post({
-            headers: { 'Content-Type': 'application/json', 'X-Gitlab-Event': 'Merge Request Hook' },
-            url: 'http://localhost:3000/api/apps/public/684202ed-1461-4983-9ea7-fde74b15026c/webhook',
-            body: fs.readFileSync('./test/app/json/merge-requests/merge-1-open.json')
-        }, async (error, response, body) => {
+describe('Test Merge Request Hooks', () => {
+    test('open Merge Request', async done => {
+        const data = new MergeRequestBuilder().action('open').build();
+
+        sendWebhook('Merge Request Hook', data, async (error, response, body) => {
             console.log(body)
-            const msg = await messages.getLastMessage();
+            const msg = await Api.getLastMessage();
             console.log(msg);
             expect(response.statusCode).toBe(200)
             done()
         });
-    })
-})
+    });
 
-describe('Merge Request 1 - comment', () => {
-    it('send mr hook', async done => {
-        request.post({
-            headers: { 'Content-Type': 'application/json', 'X-Gitlab-Event': 'Note Hook' },
-            url: 'http://localhost:3000/api/apps/public/684202ed-1461-4983-9ea7-fde74b15026c/webhook',
-            body: fs.readFileSync('./test/app/json/merge-requests/merge-1-comment.json')
-        }, async (error, response, body) => {
+    test('close Merge Request', async done => {
+        const data = new MergeRequestBuilder().action('close').build();
+
+        sendWebhook('Merge Request Hook', data, async (error, response, body) => {
             console.log(body)
-            const msg = await messages.getLastMessage();
+            const msg = await Api.getLastMessage();
             console.log(msg);
             expect(response.statusCode).toBe(200)
             done()
         });
-    })
-})
+    });
 
-describe('Merge Request 1 - close', () => {
-    it('send mr hook', async done => {
-        request.post({
-            headers: { 'Content-Type': 'application/json', 'X-Gitlab-Event': 'Merge Request Hook' },
-            url: 'http://localhost:3000/api/apps/public/684202ed-1461-4983-9ea7-fde74b15026c/webhook',
-            body: fs.readFileSync('./test/app/json/merge-requests/merge-1-close.json')
-        }, async (error, response, body) => {
+    test('update Merge Request', async done => {
+        const data = new MergeRequestBuilder().action('update').build();
+
+        sendWebhook('Merge Request Hook', data, async (error, response, body) => {
             console.log(body)
-            const msg = await messages.getLastMessage();
+            const msg = await Api.getLastMessage();
             console.log(msg);
             expect(response.statusCode).toBe(200)
             done()
         });
-    })
-})
+    });
 
+    test('merge Merge Request', async done => {
+        const data = new MergeRequestBuilder().action('merge').build();
 
-
-describe('Merge Request 2 - open', () => {
-    it('send mr hook', async done => {
-        request.post({
-            headers: { 'Content-Type': 'application/json', 'X-Gitlab-Event': 'Merge Request Hook' },
-            url: 'http://localhost:3000/api/apps/public/684202ed-1461-4983-9ea7-fde74b15026c/webhook',
-            body: fs.readFileSync('./test/app/json/merge-requests/merge-2-open.json')
-        }, async (error, response, body) => {
+        sendWebhook('Merge Request Hook', data, async (error, response, body) => {
             console.log(body)
-            const msg = await messages.getLastMessage();
+            const msg = await Api.getLastMessage();
             console.log(msg);
             expect(response.statusCode).toBe(200)
             done()
         });
-    })
-})
-
-
-describe('Merge Request 2 - push', () => {
-    it('send mr hook', async done => {
-        request.post({
-            headers: { 'Content-Type': 'application/json', 'X-Gitlab-Event': 'Merge Request Hook' },
-            url: 'http://localhost:3000/api/apps/public/684202ed-1461-4983-9ea7-fde74b15026c/webhook',
-            body: fs.readFileSync('./test/app/json/merge-requests/merge-2-push.json')
-        }, async (error, response, body) => {
-            console.log(body)
-            const msg = await messages.getLastMessage();
-            console.log(msg);
-            expect(response.statusCode).toBe(200)
-            done()
-        });
-    })
-})
-
-describe('Merge Request 2 - merge', () => {
-    it('send mr hook', async done => {
-        request.post({
-            headers: { 'Content-Type': 'application/json', 'X-Gitlab-Event': 'Merge Request Hook' },
-            url: 'http://localhost:3000/api/apps/public/684202ed-1461-4983-9ea7-fde74b15026c/webhook',
-            body: fs.readFileSync('./test/app/json/merge-requests/merge-2-merge.json')
-        }, async (error, response, body) => {
-            console.log(body)
-            const msg = await messages.getLastMessage();
-            console.log(msg);
-            expect(response.statusCode).toBe(200)
-            done()
-        });
-    })
+    });
 })
