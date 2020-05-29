@@ -11,7 +11,8 @@ This directory contains a set of automated tests for the app and is used by the 
 
 ## How to use
 
-When you want to use the automated scripts (`run.bat` or `run.sh`) you need to have Docker and docker-compose installed.
+When you want to use the automated scripts (`run.bat` or `run.sh`) you need to have Docker and docker-compose installed. 
+You can use `npm run test-win` and `npm run test-linux` as well.
 Furthermore make sure that you have all dependencies installed. The scripts don't execute any `npm install` commands.
 
 You can also use the tests without docker but then you will have to provide an instance of Rocket.Chat (not recommended).
@@ -31,7 +32,7 @@ $ ./run.sh
 
 ```
 $ (cd .. && npm install)
-$ (npm test)
+$ npm test
 ```
 
 ## Future Improvements
