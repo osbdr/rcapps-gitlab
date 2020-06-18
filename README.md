@@ -6,6 +6,16 @@ This app connects GitLab with Assistify / Rocket.Chat. Users are notified direct
 
 ![GitLab integration example](images/assistify-gitlab-integration-example.png "GitLab integration example")
 
+## Features
+
+Currently supports the following GitLab Webhooks:
+
+- "Note" (Comment) on Merge Requests and Issues
+- "Issue" (open, close, update)
+- "Merge Request" (open, close, update, merge)
+- "Pipeline" (created, pending, running, success, failed, canceled, manual, skipped)
+- "Push"
+
 ## Installation
 
 ### Preconditions
